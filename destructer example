@@ -1,0 +1,27 @@
+public class DestructorExample {
+    public static void main(String[] args) {
+        MyObject obj = new MyObject();
+        obj = null; // Setting obj to null to make it eligible for garbage collection
+
+        // Force garbage collection (usually not necessary)
+        System.gc();
+    }
+}
+
+class MyObject {
+    // Constructor
+    public MyObject() {
+        System.out.println("Object created.");
+    }
+
+    // Finalize method (deprecated in modern Java)
+    @Override
+    protected void finalize() throws Throwable {
+        try {
+            // Perform cleanup actions here
+            System.out.println("Object being finalized.");
+        } finally {
+            super.finalize();
+        }
+    }
+}
